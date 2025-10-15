@@ -52,7 +52,7 @@ public class Scanner {
                 case '\0':
                     return new Token (TokenType.EOF,"EOF");
                 default:
-                     throw new Error("lexical error at " + ch);
+                    throw new Error("lexical error at " + ch);
         }
     }
 
