@@ -15,6 +15,15 @@ public class Scanner {
        return '\0';
     }
     
+    private String number() {
+        int start = current ;
+        while (Character.isDigit(peek())) {
+            advance();
+        }
+        
+        String n = new String(input, start, current-start)  ;
+        return n;
+  }
     private void advance()  {
         char ch = peek();
         if (ch != '\0') {
@@ -22,23 +31,23 @@ public class Scanner {
         }
     }
 
-    public char nextToken () {
+    public String nextToken () {
         char ch = peek();
-
-        if (Character.isDigit(ch)) {
-						advance();
-            return ch;
-        }
+        if (ch == '0') {
+            advance();
+            return Character.toString(ch);
+        }  else if (Character.isDigit(ch))
+            return number();
 
         switch (ch) {
             case '+':
             case '-':
                 advance();
-                return ch;
+                return Character.toString(ch);
             default:
                 break;
         }
 
-        return '\0';
+        throw new Error("lexical error");
     }
 }
