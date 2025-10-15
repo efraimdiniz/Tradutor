@@ -51,16 +51,26 @@ public class Parser {
     }
 
     public void parse () {
-        expr();
+        letStatement();
     }
 
-       private void match(TokenType t) {
+    private void match(TokenType t) {
         if (currentToken.type == t) {
             nextToken();
         }else {
             throw new Error("syntax error");
         }
-   }
+    }
+
+    void letStatement () {
+        match(TokenType.LET);
+        var id = currentToken.lexeme;
+        match(TokenType.IDENT);
+        match(TokenType.EQ);
+        expr();
+        System.out.println("pop "+id);
+        match(TokenType.SEMICOLON);
+    }
 
 
 }
