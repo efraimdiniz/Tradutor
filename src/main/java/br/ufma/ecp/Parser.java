@@ -7,6 +7,35 @@ public class Parser {
 	public Parser (byte[] input) {
         this.input = input;
     }
+    
+    private void oper () {
+        if (peek() == '+') {
+            match('+');
+            digit();
+            System.out.println("add");
+            oper();
+        } else if (peek() == '-') {
+            match('-');
+            digit();
+            System.out.println("sub");
+            oper();
+        } 
+    }
+
+    private void digit () {
+        if (Character.isDigit(peek())) {
+            System.out.println("push " + peek());
+            match(peek());
+        } else {
+           throw new Error("syntax error");
+        }
+    }
+    
+
+    private void expr() {
+            digit();
+            oper();
+    }
 
     public void parse () {
         // aqui ainda ira o código
@@ -23,5 +52,6 @@ public class Parser {
             throw new Error("syntax error");
         }
   }
+
 
 }
