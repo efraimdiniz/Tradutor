@@ -1,11 +1,13 @@
 package br.ufma.ecp;
 
 public class Parser {
-    private byte[] input;
-    private int current; 
+    
+    private Scanner scan;
+    private char currentToken;
 
-	public Parser (byte[] input) {
-        this.input = input;
+    public Parser(byte[] input) {
+        scan = new Scanner(input);
+        currentToken = scan.nextToken();
     }
     
     private void oper () {
@@ -40,18 +42,7 @@ public class Parser {
     public void parse () {
         expr();
     }
-     private char peek () {
-        if (current < input.length)
-           return (char)input[current];
-       return '\0';
-    }
-    private void match (char c) {
-        if (c == peek()) {
-            current++;
-        } else {
-            throw new Error("syntax error");
-        }
-  }
+
 
 
 }
