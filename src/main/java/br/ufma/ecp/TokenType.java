@@ -2,11 +2,13 @@ package br.ufma.ecp;
 
 
 public enum TokenType {
-    PLUS,MINUS,
+    PLUS,MINUS,EQ, SEMICOLON,
 
      // Literals.
      NUMBER,
      IDENT,
+     LET,
+
 	
-		EOF
+	 EOF
 }
